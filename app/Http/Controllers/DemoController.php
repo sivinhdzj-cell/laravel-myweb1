@@ -8,7 +8,7 @@ class DemoController extends Controller
 {
     public function index()
     {
-    return view('home');
+    return view('demoindex');
     }
     public function index1()
     {
@@ -17,22 +17,33 @@ class DemoController extends Controller
     }
     public function index2()
     {
+        $data = "adc";
+        return view('demoindex2',compact('data'));
+        
+    }
+
+    public function index3()
+    {
         return response()->json([
-            'status'=>true,
-            'data'=> [
-                'prorduct'=>'san pham a1',
-                'price'=>150000
+            'status'=> true,
+            'data' => [
+                'name'=>'san pham 1',
+                'price'=> 24000
             ]
             ]);
-}
-    public function index3($id)
-    {
-        return "Id=$id";
     }
-    public function index4($id=null)
+    public function index4($id)
     {
-        return $id==null?"khong co ID " : "Id=$id";
+        $data ="ABC" ;
+        return view('demoindex4',compact('data','id'));
     }
+    public function index5($id=null)
+    {
+        $data ="ABC" ;
+        dump($id);
+        return view('demoindex5',compact('data','id'));
+    }
+ 
 
 }
 

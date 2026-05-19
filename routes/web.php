@@ -1,5 +1,8 @@
 <?php
 use App\Http\Controllers\DemoController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +27,12 @@ Route::get('/demo1',[DemoController::class,'index1']);
 
 Route::get('/demo2', [DemoController::class, 'index2']);
 
-Route::get('/demo3/{id}', [DemoController::class, 'index3']);
+Route::get('/demo3', [DemoController::class, 'index3']);
 
-Route::get('/demo4/{id?}', [DemoController::class, 'index4']);
+Route::get('/demo4/{id}', [DemoController::class, 'index4']);
+
+Route::get('/demo5/{id?}', [DemoController::class, 'index5']);
+
+Route::resource('admin/category',CategoryController::class);
+Route::resource('admin/brand',BrandController::class);
+Route::resource('admin/product',ProductController::class);
