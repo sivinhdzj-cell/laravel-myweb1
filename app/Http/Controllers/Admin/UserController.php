@@ -5,27 +5,23 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function test1()
+    public function index()
     {
-        return redirect()->route('admin.home');
+        return 'xxx';
     }
-    
-            public function test2()
-        {
-        return redirect('/admin/dashboard');
-        }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return 'create';
+
     }
 
     /**

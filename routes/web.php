@@ -3,6 +3,8 @@ use App\Http\Controllers\DemoController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +35,16 @@ Route::get('/demo4/{id}', [DemoController::class, 'index4']);
 
 Route::get('/demo5/{id?}', [DemoController::class, 'index5']);
 
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->name('admin.home');
+
+Route::get('/test1',[ProductController::class,'test1']);
+Route::get('/test2',[ProductController::class,'test2']);
+
 Route::resource('admin/category',CategoryController::class);
 Route::resource('admin/brand',BrandController::class);
 Route::resource('admin/product',ProductController::class);
+Route::resource('admin/user',UserController::class);
+Route::resource('admin/post',PostController::class);
+
