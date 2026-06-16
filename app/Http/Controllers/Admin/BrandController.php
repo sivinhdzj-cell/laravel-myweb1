@@ -4,15 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BrandController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        return'thuong hieu';
+          $list= DB::table('brands')
+        ->select ('id','brandname','slug','image','status')
+        ->where('status',1)
+        ->orderBy('brandname')
+        ->get();
+        return view ('admin.brands.index',compact('list'));
     }
 
     /**
@@ -20,7 +24,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return "Thêm thương hiệu mới";
     }
 
     /**
@@ -36,7 +40,9 @@ class BrandController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $brand='Chi tiet thuong hieu';
+        return view('',compact('brand','id'));
+
     }
 
     /**

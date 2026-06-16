@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -12,15 +11,19 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return 'Cac danh muc moi';
+        $list= DB::table('categories')
+        ->select ('cateid','catename','slug','image','status')
+        ->where('status',1)
+        ->orderBy('catename')
+        ->get();
+        return view ('admin.categories.index',compact('list'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return'danh muc moi ';
+        return view('admin.categories.create');
     }
 
     /**
@@ -28,7 +31,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -36,7 +39,9 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+         $data= 'Chi tiet san pham test';
+        dump($id);
+        return view('demoindex6',compact('data','id'));
     }
 
     /**
@@ -44,7 +49,11 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+            {
+         $data= 'Sua san pham';
+        dump($id);
+        return view('demoindex6',compact('data','id'));
+    }
     }
 
     /**

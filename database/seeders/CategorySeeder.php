@@ -15,11 +15,13 @@ class CategorySeeder extends Seeder
     {
         for ($i = 1; $i <= 10; $i++) {
             
+            // Tạo tên danh mục ngẫu nhiên bằng tiếng Anh (gồm 3 từ)
             $name = fake()->unique()->words(3, true);
             
             DB::table('categories')->insert([
-                'catename'    => ucfirst($name),
-                'slug'        => Str::slug($name),
+                // Thay thế $request bằng việc sử dụng dữ liệu fake mẫu tự động
+                'catename'    => ucfirst($name), // Viết hoa chữ cái đầu cho đẹp
+                'slug'        => Str::slug($name), // Tự động chuyển đổi chuỗi thành dạng slug (vi-du-slug)
                 'status'      => fake()->numberBetween(0, 1),
                 'sort_order'  => $i,
                 'description' => fake()->sentence(30),

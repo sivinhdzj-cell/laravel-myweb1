@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -12,7 +13,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        return 'xxx';
+          $list= DB::table('users')
+        ->select ('id','fullname','username','email','password','phone','address','gender','birthday','role','status')
+        ->where('status',1)
+        ->orderBy('username')
+        ->get();
+        return view ('admin.users.index',compact('list'));
     }
 
     /**
@@ -20,8 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return 'create';
-
+        return 'Tạo người dùng mới';
     }
 
     /**
