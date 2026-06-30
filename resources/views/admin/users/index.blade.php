@@ -63,4 +63,8 @@
         @endforeach
     </tbody>
 </table>
-@endsection
+
+<div class="d-flex justify-content-center mt-3">
+    {{ $list->links() }}
+</div>
+@endsection 

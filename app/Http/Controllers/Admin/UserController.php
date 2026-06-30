@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\User; 
 
 class UserController extends Controller
 {
@@ -13,12 +14,20 @@ class UserController extends Controller
      */
     public function index()
     {
-          $list= DB::table('users')
-        ->select ('id','fullname','username','email','password','phone','address','gender','birthday','role','status')
-        ->where('status',1)
-        ->orderBy('username')
-        ->get();
-        return view ('admin.users.index',compact('list'));
+        //   $list= DB::table('users')
+        // ->select ('id','fullname','username','email','password','phone','address','gender','birthday','role','status')
+        // ->where('status',1)
+        // ->orderBy('username')
+        // ->get();
+        // return view ('admin.users.index',compact('list'));
+        $limit = 10;
+
+        $list = User::select('id', 'fullname', 'username', 'email', 'phone', 'address', 'gender', 'birthday', 'role', 'status')
+            ->where('status', 1)
+            ->orderBy('username')
+            ->paginate($limit);   // 👈 đổi get() thành paginate($limit)
+
+        return view('admin.users.index', compact('list'));
     }
 
     /**
